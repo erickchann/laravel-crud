@@ -48,7 +48,9 @@ class StudentController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('single', [
+            "students" => Student::where('id', $id)->first()
+        ]);
     }
 
     /**
