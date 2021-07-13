@@ -13,9 +13,15 @@
                         <p>{{ $students->grade }}</p>
                         <p>{{ $students->email }}</p>
                     </div>
-                    <div class="card-action">
-                        <a href="#">Edit</a>
-                        <a href="#">Delete</a>
+                    <div class="card-action d-flex justify-content-around">
+                        <form method="post" action="/student/{{ $students->id }}">
+                            @csrf
+                            @method('delete')
+                            
+                            <button type="submit" class="waves-effect waves-light btn">Delete</button>
+                        </form>
+
+                        <a href="#" class="waves-effect waves-yellow btn">Edit</a>
                     </div>
                 </div>
             </div>

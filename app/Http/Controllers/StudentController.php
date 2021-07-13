@@ -105,6 +105,8 @@ class StudentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Student::findOrFail($id)->delete();
+
+        return redirect('student')->with('status', 'Data Deleted Successfully');
     }
 }
