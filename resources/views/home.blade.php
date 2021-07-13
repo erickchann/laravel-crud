@@ -14,7 +14,7 @@
             @foreach ($students as $student)
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     {{ $student->name }}
-                    <a href="{{ $student->id }}" class="collection-item"><span class="new badge">Details</span></a>
+                    <a href="/student/{{ $student->id }}" class="collection-item"><span class="new badge">Details</span></a>
                 </li>
             @endforeach
         </ul>

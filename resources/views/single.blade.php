@@ -21,7 +21,7 @@
                             <button type="submit" class="waves-effect waves-light btn">Delete</button>
                         </form>
 
-                        <a href="#" class="waves-effect waves-yellow btn">Edit</a>
+                        <a href="/student/{{ $students->id }}/edit" class="waves-effect waves-yellow btn">Edit</a>
                     </div>
                 </div>
             </div>

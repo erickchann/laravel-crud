@@ -82,7 +82,9 @@ class StudentController extends Controller
      */
     public function edit($id)
     {
+        $students = Student::where('id', $id)->first();
 
+        return view('edit', compact('students'));
     }
 
     /**
@@ -94,7 +96,11 @@ class StudentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $student = Student::findOrFail($id);
+
+        $student->update($request->except(['action']));
+
+        return redirect('student')->with('status', 'Data Updated Successfully');
     }
 
     /**
