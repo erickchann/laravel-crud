@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Student;
+use Error;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class StudentController extends Controller
 {
@@ -26,7 +28,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        //
+        return view('create');
     }
 
     /**
@@ -37,7 +39,26 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'nis' => 'required|integer',
+            'image' => 'required'
+        ]);
+
+        $file = $request->image;
+        $name = uniqid() . date('His') . '.' . $file->getClientOriginalExtension();
+        $file->move(public_path() . '\upload', $name);
+        $url = url('upload') . '/' . $name;
+
+        Student::create([
+            'nis' => $request->nis,
+            'name' => $request->name,
+            'grade' => $request->grade,
+            'email' => $request->email,
+            'image' => $url,
+        ]);
+
+        return redirect('student')->with('status', 'Data Inserted Successfully');
     }
 
     /**
@@ -61,7 +82,7 @@ class StudentController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
